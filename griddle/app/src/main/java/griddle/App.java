@@ -21,11 +21,22 @@ import com.mongodb.client.result.InsertOneResult;
 
 
 public class App {
+    String uri;
     public static void main(String[] args) {
         // Replace the placeholder with your MongoDB deployment's connection string
-        String uri = "mongodb+srv://junior_user:test1234@nodeapps.5avaj0n.mongodb.net/?retryWrites=true&w=majority&appName=NodeApps";
+        String uri = "mongodb+srv://dalphin64:gamerdude420@thebestclustertoeverexi.espjq.mongodb.net/?retryWrites=true&w=majority&appName=TheBestClusterToEverExist";
         Scanner scanner = new Scanner(System.in);
 
+        System.out.println("[1] create product \n [2] view all products");
+        String select_method = scanner.nextLine();
+
+        if (select_method == "1"){
+            create_product();
+        } 
+    }
+
+    public void create_product(){
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Please enter product name:");
         String prod_name = scanner.nextLine();
         scanner.nextLine();
@@ -39,7 +50,7 @@ public class App {
         scanner.nextLine();
 
         try (MongoClient mongoClient = MongoClients.create(uri)) {
-            MongoDatabase database = mongoClient.getDatabase("PWD");
+            MongoDatabase database = mongoClient.getDatabase("shopLand");
             MongoCollection<Document> collection = database.getCollection("Products");
 
             try {
