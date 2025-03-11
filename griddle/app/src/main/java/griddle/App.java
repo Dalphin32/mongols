@@ -21,52 +21,28 @@ import com.mongodb.client.result.InsertOneResult;
 
 
 public class App {
-    String uri;
+
     public static void main(String[] args) {
+        Create create = new Create();
+        Read read = new Read();
+
         // Replace the placeholder with your MongoDB deployment's connection string
         String uri = "mongodb+srv://dalphin64:gamerdude420@thebestclustertoeverexi.espjq.mongodb.net/?retryWrites=true&w=majority&appName=TheBestClusterToEverExist";
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("[1] create product \n [2] view all products");
+        System.out.println("[1] create product \n [2] view product(s)s");
         String select_method = scanner.nextLine();
 
-        if (select_method == "1"){
-            create_product();
-        } 
-    }
-
-    public void create_product(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Please enter product name:");
-        String prod_name = scanner.nextLine();
-        scanner.nextLine();
-
-        System.out.println("Please enter product price:");
-        String prod_price = scanner.nextLine();
-        scanner.nextLine();
-
-        System.out.println("Please enter product description:");
-        String prod_desc = scanner.nextLine();
-        scanner.nextLine();
-
-        try (MongoClient mongoClient = MongoClients.create(uri)) {
-            MongoDatabase database = mongoClient.getDatabase("shopLand");
-            MongoCollection<Document> collection = database.getCollection("Products");
-
-            try {
-                // Inserts a sample document describing a movie into the collection
-                InsertOneResult result = collection.insertOne(new Document()
-                        .append("_id", new ObjectId())
-                        .append("title", prod_name)
-                        .append("price", prod_price)
-                        .append("description", prod_desc));
-                // Prints the ID of the inserted document
-                System.out.println("Success!\n" + "Name: "+prod_name+" Price: "+prod_price+" Description: "+prod_desc);
-            
-            // Prints a message if any exceptions occur during the operation
-            } catch (MongoException me) {
-                System.err.println("Unable to insert due to an error: " + me);
+        if (select_method.equals("1")){
+            create.create_product();
+            } else {
+                System.out.println("[1] specific product \n [2] all products");
+                String read_method = scanner.nextLine();
+                if (read_method.equals("1")){
+                    read.read_one();
+                } else{
+                    read.read_all();
+                }
             }
-        }
     }
 }
