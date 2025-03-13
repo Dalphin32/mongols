@@ -16,6 +16,8 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.result.InsertOneResult;
 
 public class Create{
+    String uri = "mongodb+srv://dalphin64:gamerdude420@thebestclustertoeverexi.espjq.mongodb.net/?retryWrites=true&w=majority&appName=TheBestClusterToEverExist";
+
     public void create_product(){
         Scanner scanner = new Scanner(System.in);
 
@@ -28,7 +30,7 @@ public class Create{
             System.out.println("Please enter product description:");
             String prod_desc = scanner.nextLine();
 
-            String uri = "mongodb+srv://dalphin64:gamerdude420@thebestclustertoeverexi.espjq.mongodb.net/?retryWrites=true&w=majority&appName=TheBestClusterToEverExist";
+            
             try (MongoClient mongoClient = MongoClients.create(uri)) {
                 MongoDatabase database = mongoClient.getDatabase("ShopLand");
                 MongoCollection<Document> collection = database.getCollection("Products");

@@ -33,7 +33,6 @@ public class Read{
             MongoCollection<Document> collection = database.getCollection("Products");
             // Creates instructions to project two document fields
             Bson projectionFields = Projections.fields(
-                    Projections.include("title", "price", "description"),
                     Projections.excludeId());
             // Retrieves the first matching document, applying a projection and a descending sort to the results
             Document doc = collection.find(eq("title", prod_name))
@@ -54,7 +53,6 @@ public class Read{
             MongoCollection<Document> collection = database.getCollection("Products");
             // Creates instructions to project two document fields
             Bson projectionFields = Projections.fields(
-                    Projections.include("title", "price", "description"),
                     Projections.excludeId());
             // Retrieves the first matching document, applying a projection and a descending sort to the results
             MongoCursor<Document> cursor = collection.find(gt("title",""))
