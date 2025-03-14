@@ -1,3 +1,5 @@
+package griddle;
+
 
 import org.bson.Document;
 import org.bson.conversions.Bson;
@@ -23,13 +25,23 @@ public class Update{
             MongoDatabase database = mongoClient.getDatabase("ShopLand");
             MongoCollection<Document> collection = database.getCollection("Products");
             //doc to update
-            System.out.println("please type title of product to change")
+            System.out.println("please type title of product to change");
             String selected_title = scanner.nextLine();
             Document query = new Document().append("title",  selected_title);
+
+            System.out.println("please type new title:");
+            String new_title = scanner.nextLine();
+            System.out.println("please type new price:");
+            String new_price = scanner.nextLine();
+            System.out.println("please type new description:");
+            String new_desc = scanner.nextLine();
+
             // Creates instructions to update the values of three document fields
             Bson updates = Updates.combine(
                     //new values
-                    );
+                    Updates.set("title", new_title),
+                    Updates.set("price", new_price),
+                    Updates.set("description", new_desc));
             // Instructs the driver to insert a new document if none match the query
             UpdateOptions options = new UpdateOptions().upsert(true);
             try {
@@ -47,7 +59,8 @@ public class Update{
     }
 }
 
-        /*String uri = "mongodb+srv://dalphin64:gamerdude420@thebestclustertoeverexi.espjq.mongodb.net/?retryWrites=true&w=majority&appName=TheBestClusterToEverExist";
+        /*
+        String uri = "mongodb+srv://dalphin64:gamerdude420@thebestclustertoeverexi.espjq.mongodb.net/?retryWrites=true&w=majority&appName=TheBestClusterToEverExist";
         try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase("ShopLand");
             MongoCollection<Document> collection = database.getCollection("Products");

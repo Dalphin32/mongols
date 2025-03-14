@@ -25,24 +25,30 @@ public class App {
     public static void main(String[] args) {
         Create create = new Create();
         Read read = new Read();
+        Update update = new Update();
 
         // Replace the placeholder with your MongoDB deployment's connection string
         String uri = "mongodb+srv://dalphin64:gamerdude420@thebestclustertoeverexi.espjq.mongodb.net/?retryWrites=true&w=majority&appName=TheBestClusterToEverExist";
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("[1] create product \n [2] view product(s)s");
+        System.out.println("[1] create product\n[2] view product(s)s\n[3] update product");
         String select_method = scanner.nextLine();
 
         if (select_method.equals("1")){
             create.create_product();
-            } else {
-                System.out.println("[1] specific product \n [2] all products");
-                String read_method = scanner.nextLine();
-                if (read_method.equals("1")){
-                    read.read_one();
-                } else{
-                    read.read_all();
-                }
+        } 
+        else if (select_method.equals("2")){
+            System.out.println("[1] specific product \n [2] all products");
+            String read_method = scanner.nextLine();
+            if (read_method.equals("1")){
+                read.read_one();
+            } else{
+                read.read_all();
             }
+        } else if (select_method.equals("3")){
+            update.update_one();
+        } else {
+            read.read_all();
+        }
     }
 }

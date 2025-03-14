@@ -25,7 +25,7 @@ public class Read{
 
     public void read_one(){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("select product name:");
+        System.out.println("\n select product name:");
         String prod_name = scanner.nextLine();
 
         try (MongoClient mongoClient = MongoClients.create(uri)) {
